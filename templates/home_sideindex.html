@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microfinance Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            flex: 1 1 200px;
+            max-width: 250px;
+            background-color: #e6f0ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar h3 {
+            margin: 15px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: darkblue;
+            font-size: 1.1em;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .image-box {
+            flex: 3 1 700px;
+            text-align: center;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sidebar, .image-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <aside class="sidebar">
+        <h3><a href="/user/">User</a></h3>
+        <h3><a href="/admin1/">Admin</a></h3>
+        <h3><a href="/manager/">Manager</a></h3>
+    </aside>
+
+    <div class="image-box">
+        <img src="{% static 'images/mf1.jpg' %}" alt="Microfinance Banner">
+    </div>
+</div>
+
+</body>
+</html>

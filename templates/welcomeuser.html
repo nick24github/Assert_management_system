@@ -1,0 +1,130 @@
+{% load static %}
+
+{% include 'heading.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        /* General Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #e6f4ea;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            font-size: 1.1em;
+            color: darkblue;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            flex: 2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content h2 {
+            color: #006400;
+        }
+
+        /* Form Styling */
+        input[type="number"], button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #006400;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d26;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar, .main-content {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            input[type="number"], button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            {% include 'signin_sideindex.html' %}
+        </div>
+
+        <div class="main-content">
+            <h2>Welcome to the User Filter Page</h2>
+            <form action="/userfilter/" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="user-id">Enter Id:</label>
+                    <input type="number" id="user-id" name="user_id" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+
+            <!-- Message (if any) -->
+            <h1>{{ msg }}</h1>
+        </div>
+    </div>
+
+</body>
+</html>

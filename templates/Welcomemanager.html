@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f8f4;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .content {
+            flex: 3 1 600px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #006400;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <div class="sidebar">
+        {% include 'manager_sideindex.html' %}
+    </div>
+
+    <div class="content">
+        <h1>Welcome Manager</h1>
+        <img src="{% static 'images/mange.png' %}" alt="Manager Image">
+    </div>
+</div>
+
+</body>
+</html>

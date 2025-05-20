@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e6f2e6;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .content {
+            flex: 3 1 700px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        h2 {
+            color: #006400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #d1f0d1;
+            color: #003300;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            .sidebar, .content {
+                width: 100%;
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <div class="sidebar">
+        {% include 'admin_sideindex.html' %}
+    </div>
+
+    <div class="content">
+        <h2>Registered Users</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Image</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Loan Type</th>
+                </tr>
+                {% for x in object_list %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.Username }}</td>
+                    <td>{{ x.Password }}</td>
+                    <td>{{ x.Gender }}</td>
+                    <td>{{ x.Address }}</td>
+                    <td><img src="{{ x.Image.url }}" alt="User Image"></td>
+                    <td>{{ x.Email }}</td>
+                    <td>{{ x.phone_number }}</td>
+                    <td>{{ x.loantype }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

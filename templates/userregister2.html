@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Title and Link Styling */
+        h3 {
+            text-align: center;
+            color: #006400;
+            margin: 0;
+        }
+
+        .links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            color: blue;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form Fields */
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="number"],
+        .form-field input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            background-color: #006400;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d26;
+        }
+
+        /* Message Styling */
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <div class="form-container">
+        <!-- Navigation Links -->
+        <div class="links">
+            <h3><a href="/Registration/">User Registration</a></h3>
+            <h3><a href="/signin/">Sign in</a></h3>
+        </div>
+
+        <!-- Form Starts Here -->
+        <form action="/saveuser/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Form Fields -->
+            <div class="form-field">
+                <label for="bname">Bank Name:</label>
+                <input type="text" id="bname" name="bname" required>
+            </div>
+
+            <div class="form-field">
+                <label for="acno">Bank Account Number:</label>
+                <input type="number" id="acno" name="acno" required>
+            </div>
+
+            <div class="form-field">
+                <label for="branch">Branch:</label>
+                <input type="text" id="branch" name="branch" required>
+            </div>
+
+            <div class="form-field">
+                <label for="prof">Profession:</label>
+                <input type="text" id="prof" name="prof" required>
+            </div>
+
+            <div class="form-field">
+                <label for="sec">Security Document:</label>
+                <input type="file" id="sec" name="sec" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-field">
+                <button type="submit">Save</button>
+            </div>
+
+            <!-- Display Message -->
+            <div class="message">
+                <h2>{{ msg }}</h2>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

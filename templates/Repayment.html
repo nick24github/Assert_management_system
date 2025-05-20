@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            flex: 1 1 250px;
+            padding: 20px;
+            background-color: #e6f4ea;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        /* Main Form Section */
+        .form-container {
+            flex: 2 1 500px;
+            padding: 20px;
+        }
+
+        /* Form Container */
+        .form-field {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field label {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-field input,
+        .form-field select {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        /* Submit Button */
+        button {
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #004d26;
+        }
+
+        /* Success/Error Message */
+        .message {
+            text-align: center;
+            color: green;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<font color="#006400">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                {% include 'signin_sideindex.html' %}
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-container">
+                <!-- Loan Id Field -->
+                <div class="form-field">
+                    <label for="loan_id">Loan Id:</label>
+                    <input type="text" id="loan_id" name="loan_id" required>
+                </div>
+
+                <!-- Installment Amount Field -->
+                <div class="form-field">
+                    <label for="insta_amnt">Installment Amount:</label>
+                    <input type="number" id="insta_amnt" name="insta_amnt" required>
+                </div>
+
+                <!-- Payment Field -->
+                <div class="form-field">
+                    <label for="payment">Payment:</label>
+                    <select id="payment" name="payment" required>
+                        <option value="select">--Select--</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    {% for x in messages %}
+        <div class="message">
+            {{ x }}
+        </div>
+    {% endfor %}
+</font>
+
+</body>
+</html>

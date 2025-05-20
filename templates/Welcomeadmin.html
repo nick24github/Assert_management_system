@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f9fc;
+            color: #333;
+        }
+
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e6f2e6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .content {
+            flex: 2 1 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .content h1 {
+            color: #006400;
+            margin-bottom: 20px;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sidebar, .content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="main-container">
+    <div class="sidebar">
+        {% include 'admin_sideindex.html' %}
+    </div>
+    <div class="content">
+        <h1>Welcome Admin</h1>
+        <img src="{% static 'images/adminn.png' %}" alt="Admin">
+    </div>
+</div>
+
+</body>
+</html>

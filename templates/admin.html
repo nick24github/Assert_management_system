@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        .login-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+
+        .login-image {
+            flex: 1 1 300px;
+            background-color: #e6f2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .login-form {
+            flex: 2 1 400px;
+            padding: 40px;
+        }
+
+        .login-form h2 {
+            color: #006400;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #006400;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d00;
+        }
+
+        .message {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .login-image, .login-form {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<form action="/Welcome_Admin/" method="post">
+    {% csrf_token %}
+    <div class="login-container">
+        <div class="login-image">
+            <img src="{% static 'images/adminn.png' %}" alt="Admin Login">
+        </div>
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <div class="form-group">
+                <label for="uname">Username</label>
+                <input type="text" id="uname" name="uname" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Sign In</button>
+            {% if msg %}
+                <div class="message">{{ msg }}</div>
+            {% endif %}
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

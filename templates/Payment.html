@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Installment Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f5f5;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 15px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e0f7e9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .content {
+            flex: 3 1 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        h2 {
+            color: #006400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+         td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #006400;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="sidebar">
+            {% include 'manager_sideindex.html' %}
+        </div>
+        <div class="content">
+            <h2>Installment Payment Details</h2>
+            <table>
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Installment Amount</th>
+                    <th>Payment Type</th>
+                </tr>
+                {% for x in data %}
+                <tr>
+                    <td>{{ x.Loan_Id }}</td>
+                    <td>{{ x.Installment_amount }}</td>
+                    <td>{{ x.Payment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

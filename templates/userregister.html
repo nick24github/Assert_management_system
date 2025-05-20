@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #006400;
+        }
+
+        /* Form Fields */
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="password"],
+        .form-field input[type="email"],
+        .form-field input[type="number"],
+        .form-field input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-field input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            background-color: #006400;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d26;
+        }
+
+        /* Links Styling */
+        .links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            color: blue;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <div class="form-container">
+        <!-- Navigation Links -->
+        <div class="links">
+            <h3><a href="/Registration/">User Registration</a></h3>
+            <h3><a href="/signin/">Sign in</a></h3>
+        </div>
+
+        <!-- Form Starts Here -->
+        <form action="/register2/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Form Fields -->
+            <div class="form-field">
+                <label for="uname">Username:</label>
+                <input type="text" id="uname" name="uname" required>
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-field">
+                <label for="cpassword">Confirm Password:</label>
+                <input type="password" id="cpassword" name="cpassword" required>
+            </div>
+
+            <div class="form-field">
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="male" required> Male
+                <input type="radio" name="gender" value="female" required> Female
+            </div>
+
+            <div class="form-field">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div class="form-field">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+            </div>
+
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="cno">Contact Number:</label>
+                <input type="number" id="cno" name="cno" required>
+            </div>
+
+            <div class="form-field">
+                <label for="loan">Loan Type:</label>
+                <input type="text" id="loan" name="loan" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-field">
+                <button type="submit">Next</button>
+            </div>
+
+            <!-- Display Messages -->
+            <div class="form-field">
+                <p>{{ msg }}</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

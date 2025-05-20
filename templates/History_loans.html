@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 1200px;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e6f4ea;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .main {
+            flex: 3 1 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #006400;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #006400;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="sidebar">
+            {% include 'signin_sideindex.html' %}
+        </div>
+
+        <div class="main">
+            <h1>Loan Details</h1>
+            <table>
+                <tr>
+                    <th>UserName</th>
+                    <th>Loan ID</th>
+                    <th>Loan Amount</th>
+                    <th>Type of Loan</th>
+                    <th>No of Installments</th>
+                    <th>Installment Amount</th>
+                    <th>Payment Date</th>
+                </tr>
+                {% for x in data %}
+                    <tr>
+                        <td>{{ x.un }}</td>
+                        <td>{{ x.loan_id }}</td>
+                        <td>{{ x.loan_amnt }}</td>
+                        <td>{{ x.loan_type }}</td>
+                        <td>{{ x.insta_no }}</td>
+                        <td>{{ x.insta_amnt }}</td>
+                        <td>{{ x.pay_date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

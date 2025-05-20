@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microfinance Portal</title>
+
+    <style>
+        /* General Body and Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Main Container with Flexbox for Responsive Layout */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            flex: 1 1 250px;
+            max-width: 280px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #006400;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #004d26;
+        }
+
+        /* Main Image Styling */
+        .main-image {
+            flex: 3 1 600px;
+            padding: 20px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #006400;
+            color: white;
+            margin-top: 30px;
+            font-size: 1.1em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .sidebar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .main-image {
+                flex: 1 1 100%;
+            }
+
+            .sidebar a {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Hover Effects and Transitions */
+        .container a {
+            color: #006400;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .container a:hover {
+            color: #004d26;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<div class="container">
+    <!-- Sidebar Section -->
+    <aside class="sidebar">
+        <h3 style="color: #006400; font-size: 1.4em; margin-bottom: 20px;">Quick Links</h3>
+        <a href="/Registration/">User Registration</a>
+        <a href="/signin/">Sign In</a>
+    </aside>
+
+    <!-- Main Image Section -->
+    <div class="main-image">
+        <img src="{% static 'images/MICROFINANCE_im.PNG' %}" alt="Microfinance Banner">
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2025 Microfinance Portal | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

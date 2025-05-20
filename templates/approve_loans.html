@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 1200px;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .sidebar {
+            flex: 1 1 250px;
+            background-color: #e6f4ea;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .main {
+            flex: 3 1 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #006400;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        img {
+            border-radius: 4px;
+        }
+
+        a {
+            margin: 0 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            text-align: center;
+            color: #006400;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'heading.html' %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="sidebar">
+            {% include 'manager_sideindex.html' %}
+        </div>
+
+        <div class="main">
+            <h2>Customer Verification</h2>
+            <table>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Account No</th>
+                    <th>Branch</th>
+                    <th>Profession</th>
+                    <th>Security Document</th>
+                    <th>Action</th>
+                </tr>
+                {% for x in data %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.Bank_ACNO }}</td>
+                    <td>{{ x.Branch }}</td>
+                    <td>{{ x.Profession }}</td>
+                    <td><img src="{{ x.Security_document.url }}" width="100" height="50"></td>
+                    <td>
+                        <a href="/approve/?id={{ x.id }}">Yes</a> |
+                        <a href="/reject/?id={{ x.id }}">No</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</form>
+
+<h2>{{ msg }}</h2>
+
+</body>
+</html>
